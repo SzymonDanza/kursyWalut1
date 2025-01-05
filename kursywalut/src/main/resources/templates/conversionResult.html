@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Wynik przeliczenia</title>
+</head>
+<body>
+    <h1>Wynik przeliczenia</h1>
+    <p th:text="'Kwota: ' + ${amount} + ' ' + ${from}"></p>
+    <p th:text="'Przeliczona kwota: ' + ${result} + ' ' + ${to}"></p>
+    <a href="/currencies">Powrót do kursów</a>
+</body>
+</html>

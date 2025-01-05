@@ -1,5 +1,6 @@
 package com.kursywalut.kursywalut.model;
 
+
 public class CurrencyRate {
     private String currency;
     private String code;

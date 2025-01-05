@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Kursy walut</title>
+</head>
+<body>
+    <h1>Kursy walut</h1>
+    <table border="1">
+        <tr>
+            <th>Waluta</th>
+            <th>Kod</th>
+            <th>Kurs (PLN)</th>
+        </tr>
+        <tr th:each="rate : ${rates}">
+            <td th:text="${rate.currency}"></td>
+            <td th:text="${rate.code}"></td>
+            <td th:text="${rate.mid}"></td>
+        </tr>
+    </table>
+
+    <h2>Przelicz walutę</h2>
+    <form action="/currencies/convert" method="get">
+        <label>Kwota:</label>
+        <input type="number" name="amount" required>
+        <label>Z:</label>
+        <input type="text" name="from" required>
+        <label>Na:</label>
+        <input type="text" name="to" required>
+        <button type="submit">Przelicz</button>
+    </form>
+</body>
+</html>
