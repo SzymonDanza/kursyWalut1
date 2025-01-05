@@ -1,5 +1,6 @@
 package com.kursywalut.kursywalut;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
