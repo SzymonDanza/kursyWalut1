@@ -10,4 +10,4 @@ public class KursywalutApplication {
 		SpringApplication.run(KursywalutApplication.class, args);
 	}
 
-}
+}s
