@@ -29,18 +29,30 @@ public class CurrencyController {
     public String convertCurrency(@RequestParam String from, @RequestParam String to,
                                   @RequestParam double amount, Model model) {
         List<CurrencyRate> rates = currencyService.getCurrencyRates();
-
-        double fromRate = rates.stream().filter(rate -> rate.getCode().equals(from))
-                               .findFirst().orElseThrow().getMid();
-        double toRate = rates.stream().filter(rate -> rate.getCode().equals(to))
-                             .findFirst().orElseThrow().getMid();
-        double result = amount * (toRate / fromRate);
-
+    
+        // Pobieranie kursów walut
+        double fromRate = rates.stream()
+                               .filter(rate -> rate.getCode().equals(from))
+                               .findFirst()
+                               .orElseThrow(() -> new RuntimeException("Currency not found: " + from))
+                               .getMid();
+        double toRate = rates.stream()
+                             .filter(rate -> rate.getCode().equals(to))
+                             .findFirst()
+                             .orElseThrow(() -> new RuntimeException("Currency not found: " + to))
+                             .getMid();
+    
+        // Poprawny wzór
+        double result = (amount * fromRate) / toRate;
+    
+        // Dodanie danych do modelu
         model.addAttribute("result", result);
         model.addAttribute("from", from);
         model.addAttribute("to", to);
         model.addAttribute("amount", amount);
-
+    
         return "conversionResult";
     }
+    
+
 }
